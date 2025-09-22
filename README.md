@@ -103,7 +103,13 @@ Consultez le fichier `CHANGELOG.md` pour un historique complet des modifications
 
 ## Auteurs et reconnaissance
 
-Remerciements spéciaux à ceux qui ont contribué au projet.
+- Loïc Fournier (chef de projet, électronique)
+- Antoine Jourdain (électronique)
+- Daniélou Titouan (informatique)
+- Dode Nicolas (informatique)
+- Fontan Julien (informatique)
+
+Remerciements spéciaux au professeur Christophe Lohr du Département Informatique d’IMT Atlantique pour nous avoir accompagnés dans ce projet.
 
 ## Licence
 

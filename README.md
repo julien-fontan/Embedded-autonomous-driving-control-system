@@ -6,8 +6,9 @@ This project implements a line detection and lane-following system for an autono
 
 The system uses computer vision to detect road lane markings, compute the relative position of the vehicle, and adjust its steering accordingly. It is designed to be robust to changing lighting conditions and partial line detections.
 
+### The team and the prototype used to test the onboard autonomous driving system
+
 ![The team and the prototype used to test the onboard autonomous driving system](images/image1.jpeg)
-![System setup](images/image2.jpeg)
 
 ### Main features
 

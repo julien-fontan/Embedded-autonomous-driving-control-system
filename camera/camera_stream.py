@@ -4,7 +4,7 @@ import cv2
 class CameraStream:
     def __init__(self, camera_id=0):
         self.camera = Picamera2(camera_id)
-        # Ajout de la configuration main et raw
+        # Add main and raw configuration
         config = self.camera.create_preview_configuration(
             main={"size": (640, 480)},
             raw={"size": (3280, 2464)}

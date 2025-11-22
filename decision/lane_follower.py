@@ -73,4 +73,7 @@ class LaneFollower:
 
     def get_offset(self, lines, frame_shape):
         # Nouvelle méthode pour obtenir l'offset directement
+        """Compute the normalized horizontal offset (-1 to 1) of the vehicle
+        relative to the center of the lane.
+        """
         return self.compute_offset(lines, frame_shape)

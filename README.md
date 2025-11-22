@@ -1,116 +1,116 @@
-# Système de Suivi de Lignes pour Véhicule Autonome
+# Lane-Following System for Autonomous Vehicle
 
-Ce projet implémente un système de détection et de suivi de lignes pour un véhicule autonome, utilisant une Raspberry Pi, une caméra et des algorithmes de vision par ordinateur.
+This project implements a line detection and lane-following system for an autonomous vehicle, using a Raspberry Pi, a camera, and computer vision algorithms.
 
 ## Description
 
-Le système utilise la vision par ordinateur pour détecter les lignes de route, calculer la position relative du véhicule, et ajuster sa direction en conséquence. Il est conçu pour être robuste face aux conditions variables d'éclairage et aux détections partielles de lignes.
+The system uses computer vision to detect road lane markings, compute the relative position of the vehicle, and adjust its steering accordingly. It is designed to be robust to changing lighting conditions and partial line detections.
 
-### Caractéristiques principales
+### Main features
 
-- Détection en temps réel des lignes de route
-- Support pour configuration mono ou double caméra
-- Ajustement interactif des paramètres de détection
-- Mécanismes de résilience pour maintenir le suivi en cas de détection partielle
-- Contrôle proportionnel du moteur de direction
+- Real-time detection of road lanes
+- Support for single- or dual-camera configuration
+- Interactive adjustment of detection parameters
+- Resilience mechanisms to maintain tracking in case of partial detection
+- Proportional steering motor control
 
-## Architecture du système
+## System architecture
 
-Le système est organisé en plusieurs modules :
+The system is organized into several modules:
 
-1. **Module Caméra** : Acquisition des images via la caméra Raspberry Pi
-2. **Module Détection** : Traitement d'image et détection des lignes
-3. **Module Décision** : Analyse des lignes pour déterminer la position du véhicule
-4. **Module Moteur** : Contrôle du moteur de direction basé sur les décisions
+1. **Camera module**: Image acquisition via the Raspberry Pi camera
+2. **Detection module**: Image processing and lane detection
+3. **Decision module**: Analysis of lines to determine vehicle position
+4. **Motor module**: Steering motor control based on decisions
 
 ## Installation
 
-### Prérequis
+### Prerequisites
 
-- Raspberry Pi 3 ou plus récent
-- Camera Pi ou caméra USB compatible
-- Moteur et circuit de contrôle appropriés
+- Raspberry Pi 3 or newer
+- Pi Camera or compatible USB camera
+- Motor and appropriate driver circuitry
 - Python 3.7+
 - OpenCV 4.x
 
-### Dépendances
+### Dependencies
 
-Installez les dépendances requises :
+Install the required dependencies:
 
 ```bash
 pip install opencv-python numpy picamera2
 ```
 
-### Configuration matérielle
+### Hardware setup
 
-1. Connectez la caméra à la Raspberry Pi
-2. Branchez le moteur aux GPIO selon la configuration indiquée :
-   - EN sur GPIO 18
-   - IN1 sur GPIO 20
-   - IN2 sur GPIO 16
+1. Connect the camera to the Raspberry Pi
+2. Connect the motor to the GPIO pins as follows:
+   - EN to GPIO 18
+   - IN1 to GPIO 20
+   - IN2 to GPIO 16
 
-## Utilisation
+## Usage
 
-### Configuration de base
+### Basic configuration
 
-1. Cloner le dépôt :
+1. Clone the repository:
    ```bash
    git clone https://gitlab-df.imt-atlantique.fr/pronto/code-suivi-de-2-lignes.git
    cd code-suivi-de-2-lignes
    ```
 
-2. Exécuter le programme principal :
+2. Run the main program:
    ```bash
    python main.py
    ```
 
-### Ajustement des paramètres
+### Parameter adjustment
 
-Pour ajuster les paramètres de détection de lignes en temps réel :
+To adjust lane detection parameters in real time:
 
 ```bash
 python main.py --show_visuals --adjust_parameters
 ```
 
-Les paramètres optimisés seront enregistrés dans `single_camera_config.json` et réutilisés automatiquement lors des prochaines exécutions.
+The optimized parameters will be saved to `single_camera_config.json` and automatically reused for subsequent runs.
 
-### Configuration avancée
+### Advanced configuration
 
-Différentes options sont disponibles :
+Different options are available:
 
-- Mode double caméra : `python main.py --dual_camera`
-- Visualisation des détections : `python main.py --show_visuals`
-- Mode de débogage : `python main.py --debug`
+- Dual-camera mode: `python main.py --dual_camera`
+- Visualization of detections: `python main.py --show_visuals`
+- Debug mode: `python main.py --debug`
 
-## Structure des fichiers
+## File structure
 
 ```markdown
 .
-├── camera_module.py         # Module pour l'acquisition d'images
-├── detection_module.py       # Module pour la détection de lignes
-├── decision_module.py        # Module pour la prise de décision
-├── motor_module.py           # Module pour le contrôle du moteur
-├── config/                   # Dossier pour les fichiers de configuration
-│   ├── single_camera_config.json  # Configuration pour la caméra unique
-│   └── dual_camera_config.json    # Configuration pour la double caméra
-├── logs/                     # Dossier pour les fichiers journaux
-└── main.py                   # Point d'entrée principal du programme
+├── camera_module.py              # Module for image acquisition
+├── detection_module.py           # Module for lane detection
+├── decision_module.py            # Module for decision making
+├── motor_module.py               # Module for motor control
+├── config/                       # Folder for configuration files
+│   ├── single_camera_config.json # Single-camera configuration
+│   └── dual_camera_config.json   # Dual-camera configuration
+├── logs/                         # Folder for log files
+└── main.py                       # Main entry point of the program
 ```
 
-## Journal des modifications
+## Changelog
 
-Consultez le fichier `CHANGELOG.md` pour un historique complet des modifications.
+See the `CHANGELOG.md` file for a complete history of changes.
 
-## Auteurs et reconnaissance
+## Authors and acknowledgements
 
-- Loïc Fournier (chef de projet, électronique)
-- Antoine Jourdain (électronique)
-- Daniélou Titouan (informatique)
-- Dode Nicolas (informatique)
-- Fontan Julien (informatique)
+- Loïc Fournier (project lead, electronics)
+- Antoine Jourdain (electronics)
+- Daniélou Titouan (computer science)
+- Dode Nicolas (computer science)
+- Fontan Julien (computer science)
 
-Remerciements spéciaux au professeur Christophe Lohr du Département Informatique d’IMT Atlantique pour nous avoir accompagnés dans ce projet.
+Special thanks to Professor Christophe Lohr from the Computer Science Department at IMT Atlantique for supporting us throughout this project.
 
-## Licence
+## License
 
-Ce projet est sous licence MIT.
+This project is licensed under the MIT License.

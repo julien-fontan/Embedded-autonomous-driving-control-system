@@ -12,24 +12,24 @@ def main(dual_camera=False, show_visuals=False, adjust_parameters=False, use_van
     config_file = "dual_camera_config.json" if dual_camera else "single_camera_config.json"
     
     if adjust_parameters and show_visuals:
-        # Utiliser la caméra 0 pour ajuster les paramètres
+        # Use camera 0 to adjust parameters
         camera1 = CameraStream(camera_id=0)
         lane_detector = LaneDetection(video_source=camera1, dual_camera=dual_camera)
         adjuster = ParameterAdjuster(lane_detector)
         adjuster.adjust_all_parameters()
-        # Sauvegarder les paramètres ajustés dans un fichier
+        # Save adjusted parameters to a file
         with open(config_file, "w") as f:
             json.dump(lane_detector.get_parameters(), f)
         print(f"Configuration sauvegardée dans {config_file}")
         camera1.stop()
         return
 
-    # Charger les paramètres depuis le fichier
+    # Load parameters from configuration file
     try:
         with open(config_file, "r") as f:
             parameters = json.load(f)
     except FileNotFoundError:
-        print(f"Fichier de configuration {config_file} introuvable. Utilisation des paramètres par défaut.")
+        print(f"Configuration file {config_file} not found. Using default parameters.")
         parameters = {}
 
     camera1 = CameraStream(camera_id=0)
@@ -58,7 +58,7 @@ def main(dual_camera=False, show_visuals=False, adjust_parameters=False, use_van
                 if show_visuals:
                     lane_detector1.display(frame1, lines1, window_name="Lane Detection - Camera 1", resize=None)
                     lane_detector2.display(frame2, lines2, window_name="Lane Detection - Camera 2", resize=None)
-                # Normalement, mettre ici la logique de commande moteur pour 2 caméras (on s'en fout)
+                # Motor control logic for dual-camera mode could be added here
             else:
                 lines1 = lane_detector1.get_lines(frame1)
                 if show_visuals:
@@ -67,15 +67,6 @@ def main(dual_camera=False, show_visuals=False, adjust_parameters=False, use_van
                 # Commande proportionnelle du moteur
                 offset = lane_follower.get_offset(lines1, frame1.shape)
                 motor_controller.set_steering(offset)
-                
-                # Ancienne commande (à garder pour compatibilité)
-                # action = lane_follower.decide_action(lines1, frame1.shape)
-                # if action == "left":
-                #     motor_controller.left()
-                # elif action == "right":
-                #     motor_controller.right()
-                # elif action == "stop":
-                #     motor_controller.stop()
 
             if show_visuals and cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -87,8 +78,17 @@ def main(dual_camera=False, show_visuals=False, adjust_parameters=False, use_van
             cv2.destroyAllWindows()
 
 if __name__ == "__main__":
+    """
+    Runtime configuration parameters:
+
+    - dual_camera: False to use a single camera, True for two cameras
+    - show_visuals: Enables real-time display of images (requires a connected screen)
+    - adjust_parameters: Allows manual adjustment of detection parameters (requires show_visuals=True)
+
+    SSH mode (headless, no screen):
+        main(dual_camera=False, show_visuals=False, adjust_parameters=False)
+
+    Screen mode (visualization and parameter tuning):
+        main(dual_camera=False, show_visuals=True, adjust_parameters=True)
+    """
     main(dual_camera=False, show_visuals=False, adjust_parameters=False)
-    """ Si la raspberry est connectée en SSH, utiliser show_visuals=False (donc adjust_parameters=False)
-    Pour visualiser les images en temps réel (et potentiellement utiliser adjust_parameters),
-    connecter la raspberry à un écran, éxécuter ce code sur un terminal directement sur la carte,
-    et régler show_visuals=True."""

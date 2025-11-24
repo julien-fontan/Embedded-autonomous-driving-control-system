@@ -8,7 +8,7 @@ The system uses computer vision to detect road lane markings, compute the relati
 
 ### The team and the prototype used to test the onboard autonomous driving system
 
-![The team and the prototype used to test the onboard autonomous driving system](images/image1.jpeg)
+![The team and the prototype used to test the onboard autonomous driving system](gallery/team.jpeg)
 
 ### Main features
 

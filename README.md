@@ -1,4 +1,4 @@
-# Lane-Following System for Autonomous Vehicle
+# Lane-following system for autonomous vehicle
 
 This project implements a line detection and lane-following system for an autonomous vehicle, using a Raspberry Pi, a camera, and computer vision algorithms.
 
